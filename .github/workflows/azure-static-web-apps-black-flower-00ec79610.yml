@@ -38,12 +38,10 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLACK_FLOWER_00EC79610 }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          app_location: "/" # Adjust based on where your aboutmeproject.html is
-          api_location: "" # Api source code path - optional
-          output_location: "/" # Assuming you're serving static files directly from the root
+          app_location: "/"  # Adjust this if your file is in a subfolder
+          output_location: "/"  # Serving static files directly from root
+          skip_app_build: true  # Skip the build step for static files
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
